@@ -5,8 +5,8 @@ const fs = require('fs')
 const url = `https://api.bilibili.com/x/emote/user/panel/web?business=reply`
 
 request(url, (err, resp, body) => {
-  const pathToDir = path.join(__dirname, './res')
-  removeDir(pathToDir)
+  // const pathToDir = path.join(__dirname, './res')
+  // removeDir(pathToDir)
   const conf = JSON.parse(body)
   conf.data.packages.forEach((group) => {
     let name = group.text
