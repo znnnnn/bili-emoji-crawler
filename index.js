@@ -4,9 +4,6 @@ const http = require('http')
 const fs = require('fs')
 const url = `https://api.bilibili.com/x/emote/user/panel/web?business=reply`
 
-const isResize = true // 是否裁剪
-let resize = isResize ? '@60w_60h_1c_100q.png' : '' //裁剪的长宽质量格式
-
 request(url, (err, resp, body) => {
   const pathToDir = path.join(__dirname, './res')
   removeDir(pathToDir)
@@ -14,9 +11,6 @@ request(url, (err, resp, body) => {
   conf.data.packages.forEach((group) => {
     let name = group.text
     let emojis = group.emote
-    // rmdir('./res/', function() {
-    //   console.log('删除成功')
-    // });
 
     if (name != '颜文字') {
       try {
@@ -32,6 +26,8 @@ request(url, (err, resp, body) => {
   })
 })
 function fetchGroupImages(groupName, emojiArr) {
+  const isResize = false // 是否裁剪
+  let resize = isResize ? '@60w_60h_1c_100q.png' : '' //裁剪的长宽质量格式
   console.log(`group: ${groupName}`)
   emojiArr.forEach((emoji) => {
     console.log(`fetching ${emoji.url + resize}`)
